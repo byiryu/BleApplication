@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
 
 
@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/scan_msg"
-        app:layout_constraintBottom_toTopOf="@+id/result"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         android:layout_marginTop="8dp"
         android:id="@+id/progressBar"
         android:theme="@style/DialogTheme"
@@ -38,18 +38,16 @@
         android:layout_height="37dp"/>
 
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:gravity="center"
-        android:textColor="#ffffff"
-        android:id="@+id/result"
+        android:id="@+id/recyclerView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="400dp">
 
 
-    </TextView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

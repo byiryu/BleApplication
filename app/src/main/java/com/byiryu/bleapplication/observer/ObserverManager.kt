@@ -20,7 +20,7 @@ object ObserverManager : Observable {
 
     override fun connectFail(bleDevice: BleDevice) {
        for(i in observers.indices){
-           var o  = observers.get(i)
+           var o  = observers[i]
            o.connectFail(bleDevice)
        }
 
@@ -28,21 +28,21 @@ object ObserverManager : Observable {
 
     override fun connected(bleDevice: BleDevice) {
         for(i in observers.indices){
-            var o = observers.get(i)
+            var o = observers[i]
             o.connected(bleDevice)
         }
     }
 
     override fun disConnected(bleDevice: BleDevice) {
         for(i in observers.indices){
-            var o = observers.get(i)
+            var o = observers[i]
             o.disConnected(bleDevice)
         }
     }
 
     override fun notifyData(bleData: BleData) {
         for(i in observers.indices){
-            var o = observers.get(i)
+            var o = observers[i]
             o.receiveNotify(bleData)
         }
     }

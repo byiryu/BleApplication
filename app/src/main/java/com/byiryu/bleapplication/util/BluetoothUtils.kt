@@ -65,7 +65,7 @@ object BluetoothUtils{
     fun bleConnect(bleDevice: BleDevice){
         BleManager.getInstance().connect(bleDevice, object : BleGattCallback(){
             override fun onStartConnect() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onDisConnected(isActiveDisConnected: Boolean, device: BleDevice, gatt: BluetoothGatt?, status: Int) {
@@ -79,7 +79,7 @@ object BluetoothUtils{
                 mBleDevice = null
             }
 
-            override fun onConnectSuccess(bleDevice: BleDevice, gatt: BluetoothGatt?, status: Int) {
+            override fun onConnectSuccess(bleDevice: BleDevice, gatt: BluetoothGatt, status: Int) {
                 ObserverManager.connected(bleDevice)
                 mBleDevice = bleDevice
             }

@@ -1,17 +1,20 @@
-package com.byiryu.bleapplication
+package com.byiryu.bleapplication.ui
 
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
-import butterknife.BindView
-import butterknife.OnClick
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.byiryu.bleapplication.R
 import com.byiryu.bleapplication.data.BleData
 import com.byiryu.bleapplication.observer.Observer
+import com.byiryu.bleapplication.observer.ObserverManager
+import com.byiryu.bleapplication.util.BluetoothUtils
 import com.byiryu.bleapplication.util.PermissionUtil
 import com.clj.fastble.BleManager
 import com.clj.fastble.callback.BleScanCallback
@@ -21,14 +24,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.StringBuilder
 
 
-class MainActivity : AppCompatActivity(),Observer, PermissionListener {
-    override fun onPermissionGranted() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class MainActivity : AppCompatActivity(),Observer, PermissionListener,
+    BleAdapter.ItemClickListener {
 
-    override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     val TAG = "MainActivity"
 
@@ -41,6 +39,9 @@ class MainActivity : AppCompatActivity(),Observer, PermissionListener {
     lateinit var tedPermission : PermissionUtil
     lateinit var mBluetoothAdapter: BluetoothAdapter
 
+    var linearLayoutManager = LinearLayoutManager(this)
+    var bleAdapter = BleAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,12 +51,20 @@ class MainActivity : AppCompatActivity(),Observer, PermissionListener {
     }
 
     fun init(){
+
+        ObserverManager.addObserver(this)
+
         tedPermission = PermissionUtil(this)
         tedPermission.setListener(this)
 
         mConnectState = ConnectState.Connecting
 
         bluetoothInit()
+
+        linearLayoutManager.orientation = RecyclerView.VERTICAL
+        recyclerView.adapter = bleAdapter
+        recyclerView.layoutManager = linearLayoutManager
+        bleAdapter.setOnclickListener(this)
 
         if(progressBar != null)
             setPrograssVisible(false)
@@ -133,19 +142,14 @@ class MainActivity : AppCompatActivity(),Observer, PermissionListener {
                 setPrograssVisible(false)
 
                 if(list.size != 0){
-                    var index = 0
-                    for(device in list){
-                        str.append("[$index] Mac Address :" +device.mac + "\n")
-                        index++
-                    }
-                    result.text = str.toString()
+
+                    bleAdapter.addItem(list)
+                    bleAdapter.notifyAdater()
                     scan_msg.text = "검색하기"
                 }else{
                     scan_msg.text = "검색된 기기가 없습니다."
                     setPrograssVisible(false)
                 }
-
-
             }
 
             override fun onScanStarted(success: Boolean) {
@@ -160,25 +164,34 @@ class MainActivity : AppCompatActivity(),Observer, PermissionListener {
         })
     }
 
-
     override fun connectFail(bleDevice: BleDevice) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.e(TAG, "connectFail")
     }
 
     override fun connected(bleDevice: BleDevice) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(this, "블루투스 장치가 연결되었습니다. : " + bleDevice.mac, Toast.LENGTH_LONG).show()
+        Log.e(TAG, "connected : " + bleDevice.mac )
     }
 
     override fun disConnected(bleDevice: BleDevice) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.e(TAG, "disConnected")
     }
 
     override fun receiveNotify(bleData: BleData) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.e(TAG, "connectFail")
     }
 
 
+    override fun onPermissionGranted() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
+    override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
+    override fun onClickItem(bleDevice: BleDevice) {
+        BluetoothUtils.bleConnect(bleDevice)
+    }
 
 }
