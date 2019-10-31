@@ -16,8 +16,6 @@ https://github.com/Jasonchenlijian/FastBle
 # ScreenShot
 
 <div>
-<img style="width: 80px; height=auto;" src="https://user-images.githubusercontent.com/6897464/67921901-8d1f4080-fbec-11e9-85f4-4744c7263308.jpg"/>
-<img style="width: 80px; height=auto;" src="https://user-images.githubusercontent.com/6897464/67921902-8db7d700-fbec-11e9-8d94-78710577508c.jpg"/>
-<img style="width: 80px; height=auto;" src="https://user-images.githubusercontent.com/6897464/67921903-8ee90400-fbec-11e9-8e04-83f7dd4876c6.jpg"/>
+<img style="width: 80px; height=auto;" src=(https://user-images.githubusercontent.com/6897464/67922405-04090900-fbee-11e9-9392-6d5add4bab03.png"/>
 </div>
 
