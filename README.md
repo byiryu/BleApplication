@@ -5,14 +5,23 @@ https://github.com/Jasonchenlijian/FastBle
 
 
 # Gradle
+    dependencies {
+        //bluetooth
+        implementation 'com.clj.fastble:FastBleLib:2.3.4'
 
-    //bluetooth
-    implementation 'com.clj.fastble:FastBleLib:2.3.4'
+        // Tedpremission
+        implementation 'gun0912.ted:tedpermission:2.2.2'
+    }
+    
+# Permission 권한 필요
 
-    //ted premission
-    implementation 'gun0912.ted:tedpermission:2.2.2'
-    
-    
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.BLUETOOTH" />
+        <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+        
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION
+        
 # ScreenShot
 
 <div>
