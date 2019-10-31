@@ -16,6 +16,6 @@ https://github.com/Jasonchenlijian/FastBle
 # ScreenShot
 
 <div>
-<img style="width: 80px; height=auto;" src=(https://user-images.githubusercontent.com/6897464/67922405-04090900-fbee-11e9-9392-6d5add4bab03.png"/>
+<img style="width: 80px; height=auto;" src="https://user-images.githubusercontent.com/6897464/67922405-04090900-fbee-11e9-9392-6d5add4bab03.png"/>
 </div>
 
