@@ -3,7 +3,8 @@
 FastBleLib 를 이용한 블루투스 연동
 https://github.com/Jasonchenlijian/FastBle
 
-gradle
+
+#Gradle
 
     //bluetooth
     implementation 'com.clj.fastble:FastBleLib:2.3.4'
