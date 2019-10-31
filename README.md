@@ -5,7 +5,7 @@ https://github.com/Jasonchenlijian/FastBle
 
 gradle
 
-   //bluetooth
+    //bluetooth
     implementation 'com.clj.fastble:FastBleLib:2.3.4'
 
     //ted premission
